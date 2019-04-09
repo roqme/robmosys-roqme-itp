@@ -211,7 +211,9 @@ https://github.com/ADLINK-IST/opensplice/releases
    ```
 3.	Generating the RoQME QoS metric provider component model. 
 
-    In order to generate the RoQME artifacts from the previous models, right click on the .roqmemap file and select RoQME - > Generate Metrics Provider. This generation process will create two projects: (1) a QoSMetricProvider project; and (2) CommRoqmeEstimate project. The former includes the generated Smartsoft component model for the QoS Metric Provider. Smartsoft will use this model as an input to generate the corresponding software. The latter includes the definition of the communication objects used by the QoS metric provider component to communicate the estimated metrics to other components. 
+    In order to generate the RoQME artifacts from the previous models, right click on the .roqmemap file and select RoQME - > Generate Metrics Provider. 
+    
+    This generation process will create two projects: (1) a QoSMetricProvider project; and (2) CommRoqmeEstimate project. The former includes the generated Smartsoft component model for the QoS Metric Provider. Smartsoft will use this model as an input to generate the corresponding software. The latter includes the definition of the communication objects used by the QoS metric provider component to communicate the estimated metrics to other components. 
 
     The following figure illustrates the structure of the generated Smartsoft component model, including (1) the inputs obtained from the external context providers (red square); (2) the three main processes carried out by the component (i.e., context monitoring, event processing, and probabilistic reasoning) connected through the so called RoQME Data Space (blue square); and (3) the structure of the communication objects used to provide the metrics to other components (green square).
 

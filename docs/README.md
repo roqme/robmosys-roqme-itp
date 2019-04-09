@@ -50,7 +50,7 @@ https://github.com/ADLINK-IST/opensplice/releases
     27	. $OSPL_HOME/etc/java/defs.$SPLICE_JDK
     28	export OSPL_HOME PATH LD_LIBRARY_PATH CPATH OSPL_TMPL_PATH VORTEX_DIR
     ```
-8.	Add the line 17 (highlighted in red) as follows:
+8.	Add the line 17 as follows:
     
     Edited file
     ```
@@ -70,9 +70,7 @@ https://github.com/ADLINK-IST/opensplice/releases
     14	else
     15	echo "Please manually set OSPL_HOME to the install directory."
     16	fi
-    ```
-    17	**OSPL_HOME="/home/smartsoft/OpenSpliceDDS/HDE/x86_64.linux"**
-    ```
+    17	OSPL_HOME="/home/smartsoft/OpenSpliceDDS/HDE/x86_64.linux"
     18	PATH=$OSPL_HOME/bin:$PATH
     19	LD_LIBRARY_PATH=$OSPL_HOME/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH
     20	CPATH=$OSPL_HOME/include:$OSPL_HOME/include/sys:${CPATH:=}

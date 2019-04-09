@@ -216,7 +216,7 @@ https://github.com/ADLINK-IST/opensplice/releases
     This generation process will create two projects: (1) a QoSMetricProvider project; and (2) CommRoqmeEstimate project. The former includes the generated Smartsoft component model for the QoS Metric Provider. Smartsoft will use this model as an input to generate the corresponding software. The latter includes the definition of the communication objects used by the QoS metric provider component to communicate the estimated metrics to other components. 
 
     The following figure illustrates the structure of the generated Smartsoft component model, including (1) the inputs obtained from the external context providers (red square); (2) the three main processes carried out by the component (i.e., context monitoring, event processing, and probabilistic reasoning) connected through the so called RoQME Data Space (blue square); and (3) the structure of the communication objects used to provide the metrics to other components (green square).
-
+![](https://github.com/roqme/robmosys-itp/blob/master/docs/img/Smartsoft.PNG)
  
 4.	Compiling the generated C/C++ code.
 Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are implemented in C/C++ and, thus, need to be compiled following the steps indicated next:

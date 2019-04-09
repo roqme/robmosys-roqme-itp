@@ -15,6 +15,8 @@ IMPORTANT: All the instructions included next must be executed on the SmartMDSD 
     1.	Restart the virtual machine to get the “Guest additions” running
 4.	Download OpenSliceDDS Community Edition: 
 https://github.com/ADLINK-IST/opensplice/releases  
+![](https://github.com/roqme/robmosys-itp/blob/master/docs/img/VersionDDS.png)
+
 5.	Create a new folder "OpenSpliceDDS" into "/home/smartsoft" 
 6.	Extract the file downloaded in (4) into the folder created in (5)
 7.	Open the “release.com” file available at: "/home/smartsoft/OpenSpliceDDS/HDE/x86_64.linux/release.com"

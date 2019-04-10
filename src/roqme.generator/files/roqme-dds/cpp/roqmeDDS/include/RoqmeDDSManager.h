@@ -1,3 +1,21 @@
+/*
+ * This file belongs to the RoQME toolchain.
+ * Copyright (C) 2019  University of Extremadura, University of Málaga, Biometric Vox.
+
+ * RoQME is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * any later version.
+
+ * RoQME is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * GNU GPLv3 link: http://www.gnu.org/licenses/gpl-3.0.html
+ *
+ */
+
 #ifndef _RoqmeDDSInterface__
 #define _RoqmeDDSInterface__
 
@@ -10,159 +28,159 @@ namespace Roqme
 {
 
 /**
- * La clase RoqmeDDSManager es un wrapper de DDS que permite enviar y recibir tópicos utilizados en el proyecto Roqme. 
+ * Deprecated
  */
 class RoqmeDDSManager
 {
 public:
 	/**
-	 * Permite crear instancias de la clase RoqmeDDSManager. Internamente utilizará dos DataWriters (para publicar tópicos RoqmeContext y RoqmeObservation) y dos DataReaders (para suscribirse a tópicos RoqmeContext y RoqmeObservation). Inicialmente estas entidades DDS no están inicializadas.
-	 * @param maxInstances. Número máximo de datos que podrá almacenar cada DataWriter/DataReader en DDS. El valor por defecto indica un número infinito de datos.
+	 * It creates RoqmeDDSManager instances.
+	 * @param maxInstances. Max number of instances a DataWriter/DataReader can store in DDS. A default value specifies unlimited resources.
 	 */
 	RoqmeDDSManager(const int& maxInstances = -1);		
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeContext. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createIntContextWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeContext. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createUIntContextWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeContext. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createDoubleContextWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeContext. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createBoolContextWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeContext. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createEnumContextWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeContext. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createEventContextWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeObservation. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createObservationWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataWriter que permite publicar tópicos RoqmeObservation. 
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataWriter for RoqmeIntContext topics
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createEstimateWriter(const std::string& partitionName = DEFAULT_PARTITION_NAME);
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeContext. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeIntContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createIntContextReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeIntContext>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeContext. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeUIntContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createUIntContextReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeUIntContext>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeContext. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeDoubleContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createDoubleContextReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeDoubleContext>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeContext. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeBoolContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createBoolContextReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeBoolContext>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeContext. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeEventContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createEventContextReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeEventContext>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeContext. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeEnumContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createEnumContextReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeEnumContext>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	
 	/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeObservation. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	 * It creates a DataReader for RoqmeObservation topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createObservationReader(	Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeObservation>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
-		/**
-	 * Crea el DataReader que permite suscribir a tópicos RoqmeObservation. 
-	 * @param elistener. Listener que se utiliza para recibir datos de forma asíncrona
-	 * @param partitionName. Nombre de la partición donde se publicará el dato. Si se omite se utiliza una por defecto.
+	/**
+	 * It creates a DataReader for RoqmeIntContext topics
+	 * @param elistener. Listener used for asynchronous data reception
+	 * @param partitionName. Partition name used. If ommited, a default value will be used.
 	 */
 	void createEstimateReader(		Roqme::RoqmeDDSListener<RoqmeDDSTopics::RoqmeEstimate>* elistener = nullptr, 
 									const std::string& filtered_expression = DEFAULT_FILTERED_EXPRESSION, 
 									const std::string& partitionName = DEFAULT_PARTITION_NAME);	
 	/**
-	 * Publicación de una instancia del tópico RoqmeContext
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeIntContext topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeIntContext& data);	
 	/**
-	 * Publicación de una instancia del tópico RoqmeContext
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeUIntContext topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeUIntContext& data);	
 	/**
-	 * Publicación de una instancia del tópico RoqmeContext
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeDoubleContext topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeDoubleContext& data);	
 	/**
-	 * Publicación de una instancia del tópico RoqmeContext
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeBoolContext topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeBoolContext& data);	
 	/**
-	 * Publicación de una instancia del tópico RoqmeContext
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeEventContext topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeEventContext& data);	
 	/**
-	 * Publicación de una instancia del tópico RoqmeContext
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeEnumContext topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeEnumContext& data);		
 	/**
-	 * Publicación de una instancia del tópico RoqmeObservation
-	 * @param data. Estructura del tópico a enviar.
+	 * Publishes a RoqmeObservation topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeObservation& data);
-		/**
-	 * Publicación de una instancia del tópico RoqmeObservation
-	 * @param data. Estructura del tópico a enviar.
+	/**
+	 * Publishes a RoqmeEstimate topic sample
+	 * @param data. Data that will be distributed
 	 */
 	void write(const RoqmeDDSTopics::RoqmeEstimate& data);
 	
@@ -189,67 +207,67 @@ private:
 							   );	
 private:
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para suscribirse a al tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataReader<RoqmeIntContext>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeIntContext>> intContextReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar el tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataWriter<RoqmeIntContext>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeIntContext>> intContextWriterPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para suscribirse a al tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataReader<RoqmeUIntContext>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeUIntContext>> uintContextReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar el tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataWriter<RoqmeUIntContext>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeUIntContext>> uintContextWriterPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar el tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataReader<RoqmeDoubleContext>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeDoubleContext>> doubleContextWriterPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para suscribirse a al tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataReader<RoqmeBoolContext>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeDoubleContext>> doubleContextReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para suscribirse a al tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataWriter<RoqmeBoolContext>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeBoolContext>> boolContextReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar el tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataWriter<RoqmeBoolContext>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeBoolContext>> boolContextWriterPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para suscribirse a al tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataReader<RoqmeEventContext>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeEventContext>> eventContextReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar el tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataWriter<RoqmeEventContext>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeEventContext>> eventContextWriterPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para suscribirse a al tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataReader<RoqmeEnumContext>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeEnumContext>> enumContextReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar el tópico RoqmeContext
+	 * Smart pointer to a RoqmeDataWriter<RoqmeEnumContext>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeEnumContext>> enumContextWriterPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para publicar datos del tipo RoqmeObservation
+	 * Smart pointer to a RoqmeDataReader<RoqmeObservation>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeObservation>> observationReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar datos del tipo RoqmeObservation
+	 * Smart pointer to a RoqmeDataReader<RoqmeObservation>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeObservation>> observationWriterPtr;	
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataReader para publicar datos del tipo RoqmeObservation
+	 * Smart pointer to a RoqmeDataReader<RoqmeEstimate>
 	 */
 	std::unique_ptr<RoqmeDataReader<RoqmeDDSTopics::RoqmeEstimate>> estimateReaderPtr;
 	/**
-	 * Puntero inteligente a un objeto RoqmeDataWriter para publicar datos del tipo RoqmeObservation
+	 * Smart pointer to a RoqmeDataWriter<RoqmeEstimate>
 	 */
 	std::unique_ptr<RoqmeDataWriter<RoqmeDDSTopics::RoqmeEstimate>> estimateWriterPtr;	
 	/**

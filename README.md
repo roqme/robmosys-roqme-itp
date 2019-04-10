@@ -18,7 +18,7 @@ The RoQME Tool Chain, delivered here as a free and open source Eclipse plug-in, 
 
 **Follow RoQME at:**
 
-* Twitter: @RoQME_ITP
+* Twitter: [@RoQME_ITP](https://twitter.com/roqme_itp)
   
 * LinkedIn: https://www.linkedin.com/groups/12096769/ 
   

@@ -254,7 +254,7 @@
 
 	**FOR THE DDS Library**
 
-	* Move to the generated “roqme-dds” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp/roqmeDDS”, open a new terminal and execute the following commands: 
+	* Move to the generated “roqme-dds” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp/roqmeDDS”, open a new terminal, and execute the following commands: 
 
 	```
 	chmod +777 gen_makefile.sh
@@ -264,7 +264,7 @@
 
 	**FOR THE Probabilistic Reasoner**
 
-	* Move to the generated “reasoner” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/reasoner”, open a new terminal and execute the following commands: 
+	* Move to the generated “reasoner” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/reasoner”, open a new terminal, and execute the following commands: 
 
 	```
 	chmod +777 gen_makefile.sh
@@ -272,4 +272,4 @@
 	make
 	```
 
-	Et voilá! The generated RoQME component can now be used within any Smartsoft architecture as a QoS metrics provider.
+Et voilá! The generated RoQME component can now be used within any Smartsoft architecture as a QoS metrics provider.

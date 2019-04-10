@@ -195,7 +195,7 @@ https://github.com/ADLINK-IST/opensplice/releases
     **IMPORTANT**: New RoQME Projects include two files: (1) a .roqme model, including the definitions of the contexts relevant for the current project; and (2) a .roqmemap model that binds the previous contexts with the corresponding Smartsoft services (this mapping is created during the project configuration: steps iii – vi). 
 2.	Extending the .roqme model. Once initialized as described in step 1, the RoQME model can be extended to include relevant (non-functional) properties, observations, variables, etc. Next, you can find an example .roqme model including:
 
-    1.	Three contexts: bump, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step 1.6); and bumpEvent and bumpCount, which are two additional contexts derived from bump. IMPORTANT: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
+    1.	Three contexts: bump, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step vi); and bumpEvent and bumpCount, which are two additional contexts derived from bump. IMPORTANT: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
     1.	The safety property that takes a default value of 1; and
     1.	Two observations: o1 => safety is undermined every time a bumpEvent is detected; and o2 => safety is (veryhigh) undermined if more than 5 bumpEvents are detected within 1 hour.
    ```

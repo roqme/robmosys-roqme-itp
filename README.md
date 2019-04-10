@@ -1,4 +1,4 @@
-# RoQME: RoQME: Dealing with non-functional properties through global Robot Quality-of- Service MEtrics
+# RoQME: Dealing with non-functional properties through global Robot Quality-of- Service MEtrics
 
 Building systems out of components requires taking into account both functional and non-functional properties. Non-functional properties define “how” a system performs rather than “what” it does. Examples of non-functional properties include dependability, safety, security, resource consumption, customer satisfaction, etc.
 

@@ -244,7 +244,7 @@
 
 	Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are implemented in C/C++ and, thus, need to be compiled following the steps indicated next:
 
-* Copy the following code at the end of the .bashrc file, available at: “/home/smartsoft”, in order to creates the ROQME_ROOT, LD_LIBRARY_PATH and CPATH environment variables: 
+* Copy the following code at the end of the .bashrc file, available at: “/home/smartsoft”, in order to create the ROQME_ROOT, LD_LIBRARY_PATH and CPATH environment variables: 
 
         ```
         export ROQME_ROOT="/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp"
@@ -257,10 +257,10 @@
 * Move to the generated “roqme-dds” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp/roqmeDDS”, open a new terminal and execute the following commands: 
 
 	```
-        chmod +777 gen_makefile.sh 
-        ./gen_makefile.sh
-        make
-        ```
+	chmod +777 gen_makefile.sh
+	./gen_makefile.sh
+	make
+	```
 
 	**FOR THE Probabilistic Reasoner**
 

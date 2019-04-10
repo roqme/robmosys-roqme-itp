@@ -24,33 +24,33 @@
 namespace Roqme
 {
 /**
- * Clase utilizada para controlar excepciones en la creación y uso de la librería
+ * RoqmeDDSException class
  */
 class RoqmeDDSException: public std::exception
 {
 public:
 	/**
 	 * Constructor
-	 * @param message. Mensaje en formato C string.
+	 * @param message. Message in C string style
 	 */
-    explicit RoqmeDDSException(const char* message);
-    /**
+    	explicit RoqmeDDSException(const char* message);
+     	/**
 	 * Constructor
-	 * @param message. Mensaje en formato string C++.
+	 * @param message. Message in C++ string style
 	 */
 	explicit RoqmeDDSException(const std::string& message);
 	/**
 	 * Destructor
 	 */
-    virtual ~RoqmeDDSException() throw ();
+    	virtual ~RoqmeDDSException() throw ();
 	/**
-	 * Muestra información de la excepción
+	 * It shows the exception error information
 	 */
-    virtual const char* what() const throw ();
+    	virtual const char* what() const throw ();
 
 protected:
 	/**
-	 * Mensaje con información de la excepción
+	 * Message that contains exception information
 	 */
     std::string msg;
 };

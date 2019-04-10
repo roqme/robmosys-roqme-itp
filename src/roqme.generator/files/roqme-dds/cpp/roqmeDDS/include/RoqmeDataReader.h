@@ -84,7 +84,7 @@ public:
 	
 private:
 	/**
-	 * It reads from DDS queues all the samples available of an instance
+	 * It reads from DDS queues all the samples available of a particular instance
 	 * @param key. Instance key
 	 * @param data. Data obtained from DDS queues
 	 */

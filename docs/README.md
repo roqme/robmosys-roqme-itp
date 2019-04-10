@@ -189,44 +189,44 @@
 
 1.	Creating a new RoQME Project:
 
-    1.	File - > New - > Other -> RoQME Project
+    1.	**_File - > New - > Other -> RoQME Project_**
     
-    1.	Choose the project name and click the “Next” button
+    1.	Choose the project name and click the **_Next_** button
     
-    1.	Click on “Load Repository” and choose the required contexts. For instance, to include the information provided by the bumper as a context, choose the “CommBasicsObjects.BumperEventService” service, available at: “/home/smartsoft/SOFTWARE/smartsoft/repos/DomainModelsRepositories/CommBasicsObjects/model/CommBasicObjects.service” 
+    1.	Click on **_Load Repository_** and choose the required contexts. For instance, to include the information provided by the bumper as a context, choose the _CommBasicsObjects.BumperEventService_ service, available at: “/home/smartsoft/SOFTWARE/smartsoft/repos/DomainModelsRepositories/CommBasicsObjects/model/CommBasicObjects.service” 
     
-    1.	Browse the services in the tree model until you find the bumper and select: CommBasicsObjects.BumperEventService: new State[Enum]
+    1.	Browse the services in the tree model until you find the bumper and select: _CommBasicsObjects.BumperEventService: new State[Enum]_
     
-    1.	Once selected, press the “Add context” button
+    1.	Once selected, press the **_Add context_** button
     
-    1.	Double click on the name of the context and change it from context0 to “bump”
+    1.	Double click on the name of the context and change it from _context0_ to _bump_
     
     1.	Repeat steps iii – vi for each context that needs to be included as an input in the RoQME model
     
-    1.	Click the “Finish” button
+    1.	Click the **_Finish_** button
     
     **IMPORTANT**: New RoQME Projects include two files: (1) a **_.roqme model_**, including the definitions of the contexts relevant for the current project; and (2) a **_.roqmemap_** model that binds the previous contexts with the corresponding Smartsoft services (this mapping is created during the project configuration: steps iii – vi). 
     
 2.	Extending the .roqme model. Once initialized as described in step 1, the RoQME model can be extended to include relevant (non-functional) properties, observations, variables, etc. Next, you can find an example .roqme model including:
 
-    1.	Three contexts: bump, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step vi); and bumpEvent and bumpCount, which are two additional contexts derived from bump. IMPORTANT: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
+    1.	Three contexts: _bump_, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step vi); and _bumpEvent_ and _bumpCount_, which are two additional contexts derived from _bump_. **IMPORTANT**: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
     
-    1.	The safety property that takes a default value of 1; and
+    1.	The _safety_ property that takes a default value of 1; and
     
-    1.	Two observations: o1 => safety is undermined every time a bumpEvent is detected; and o2 => safety is (veryhigh) undermined if more than 5 bumpEvents are detected within 1 hour.
+    1.	Two observations: _o1_ => safety is undermined every time a bumpEvent is detected; and _o2_ => safety is (veryhigh) undermined if more than 5 bumpEvents are detected within 1 hour.
     
    ```
-    roqme RoQME_Example
+         roqme RoQME_Example
 
-    context bump : enum {BUMPER_UNKNOWN, BUMPER_NOT_PRESSED, BUMPER_PRESSED}
-    context bumpEvent : eventtype := bump::BUMPER_PRESSED
-    context bumpCount : number := count(bumpEvent,1hour)
+         context bump : enum {BUMPER_UNKNOWN, BUMPER_NOT_PRESSED, BUMPER_PRESSED}
+         context bumpEvent : eventtype := bump::BUMPER_PRESSED
+         context bumpCount : number := count(bumpEvent,1hour)
 
-    property safety reference 1
+         property safety reference 1
 
-    timer t := 1 hour
-    observation o1 : bumpEvent undermines safety
-    observation o2 : t while (bumpCount >5) undermines safety veryhigh
+         timer t := 1 hour
+         observation o1 : bumpEvent undermines safety
+         observation o2 : t while (bumpCount >5) undermines safety veryhigh
    ```
 
 3.	Generating the RoQME QoS metric provider component model. 

@@ -188,22 +188,33 @@
 ## Using RoQME within SmartMDSD:
 
 1.	Creating a new RoQME Project:
+
     1.	File - > New - > Other -> RoQME Project
+    
     1.	Choose the project name and click the “Next” button
-    1.	Click on “Load Repository” and choose the required contexts. For instance, to include the information provided by the bumper as a context, choose the “CommBasicsObjects.BumperEventService” service, available at: “/home/smartsoft/SOFTWARE/smartsoft/repos/DomainModelsRepositories/
-    CommBasicsObjects/model/CommBasicObjects.service” 
+    
+    1.	Click on “Load Repository” and choose the required contexts. For instance, to include the information provided by the bumper as a context, choose the “CommBasicsObjects.BumperEventService” service, available at: “/home/smartsoft/SOFTWARE/smartsoft/repos/DomainModelsRepositories/CommBasicsObjects/model/CommBasicObjects.service” 
+    
     1.	Browse the services in the tree model until you find the bumper and select: CommBasicsObjects.BumperEventService: new State[Enum]
+    
     1.	Once selected, press the “Add context” button
+    
     1.	Double click on the name of the context and change it from context0 to “bump”
+    
     1.	Repeat steps iii – vi for each context that needs to be included as an input in the RoQME model
+    
     1.	Click the “Finish” button
     
-    **IMPORTANT**: New RoQME Projects include two files: (1) a .roqme model, including the definitions of the contexts relevant for the current project; and (2) a .roqmemap model that binds the previous contexts with the corresponding Smartsoft services (this mapping is created during the project configuration: steps iii – vi). 
+    **IMPORTANT**: New RoQME Projects include two files: (1) a **_.roqme model_**, including the definitions of the contexts relevant for the current project; and (2) a **_.roqmemap_** model that binds the previous contexts with the corresponding Smartsoft services (this mapping is created during the project configuration: steps iii – vi). 
+    
 2.	Extending the .roqme model. Once initialized as described in step 1, the RoQME model can be extended to include relevant (non-functional) properties, observations, variables, etc. Next, you can find an example .roqme model including:
 
     1.	Three contexts: bump, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step vi); and bumpEvent and bumpCount, which are two additional contexts derived from bump. IMPORTANT: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
+    
     1.	The safety property that takes a default value of 1; and
+    
     1.	Two observations: o1 => safety is undermined every time a bumpEvent is detected; and o2 => safety is (veryhigh) undermined if more than 5 bumpEvents are detected within 1 hour.
+    
    ```
     roqme RoQME_Example
 
@@ -217,9 +228,12 @@
     observation o1 : bumpEvent undermines safety
     observation o2 : t while (bumpCount >5) undermines safety veryhigh
    ```
+
 3.	Generating the RoQME QoS metric provider component model. 
 
-    In order to generate the RoQME artifacts from the previous models, right click on the .roqmemap file and select RoQME - > Generate Metrics Provider. 
+    In order to generate the RoQME artifacts from the previous models, right click on the .roqmemap file and select:
+    
+    **_RoQME - > Generate Metrics Provider_** 
     
     This generation process will create two projects: (1) a QoSMetricProvider project; and (2) CommRoqmeEstimate project. The former includes the generated Smartsoft component model for the QoS Metric Provider. Smartsoft will use this model as an input to generate the corresponding software. The latter includes the definition of the communication objects used by the QoS metric provider component to communicate the estimated metrics to other components. 
 
@@ -227,23 +241,25 @@
 ![](https://github.com/roqme/robmosys-itp/blob/master/docs/img/Smartsoft.PNG)
  
 4.	Compiling the generated C/C++ code.
+
 Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are implemented in C/C++ and, thus, need to be compiled following the steps indicated next:
-    1.	Copy the following code at the end of the .bashrc file, available at: “/home/smartsoft”, in order to creates the ROQME_ROOT, LD_LIBRARY_PATH and CPATH environment variables: 
+
+   1.	Copy the following code at the end of the .bashrc file, available at: “/home/smartsoft”, in order to creates the ROQME_ROOT, LD_LIBRARY_PATH and CPATH environment variables: 
         ```
         export ROQME_ROOT="/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp"
         export LD_LIBRARY_PATH=$ROQME_ROOT/roqmeDDS/lib:$LD_LIBRARY_PATH
         export CPATH=$ROQME_ROOT/roqmeDDS/include:$ROQME_ROOT/roqmeDDS/idl:$CPATH
         ```
-    FOR THE DDS Library
+**FOR THE DDS Library**
     
-    2.	Move to the generated “roqme-dds” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp/roqmeDDS”, open a new terminal and execute the following commands: 
+   2.	Move to the generated “roqme-dds” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp/roqmeDDS”, open a new terminal and execute the following commands: 
         ```
         chmod +777 gen_makefile.sh 
         ./gen_makefile.sh
         make
         ```
-    FOR THE Probabilistic Reasoner 
+ **FOR THE Probabilistic Reasoner** 
 
-    3.	Follow the same instructions as for the DDS Library but for the “reasoner project”, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/reasoner”
+   3.	Follow the same instructions as for the DDS Library but for the “reasoner project”, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/reasoner”
 
-5.	Et voilá! From this moment on, the generated RoQME component can be used (and reused) within any Smartsoft architecture as a QoS metrics provider.
+   4.	Et voilá! From this moment on, the generated RoQME component can be used (and reused) within any Smartsoft architecture as a QoS metrics provider.

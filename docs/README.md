@@ -1,7 +1,7 @@
 
 # RoQME Installation
 
-## Pre-Installation 
+## Pre-Installation (see the video tutorial available [here](https://github.com/roqme/robmosys-itp/blob/master/docs/installation-videos/PreInstalation.avi))
 
 1.	Download the SmartSoft virtual machine from: https://wiki.servicerobotik-ulm.de/virtual-machine
 
@@ -185,7 +185,7 @@
        
     1.	Restart Eclipse
  
-## Using RoQME within SmartMDSD:
+## Using RoQME within SmartMDSD (see the video tutorial available [here](https://github.com/roqme/robmosys-itp/blob/master/docs/installation-videos/UsingRoQME.avi))
 
 1.	Creating a new RoQME Project:
 

@@ -209,7 +209,7 @@
     
 2.	Extending the .roqme model. Once initialized as described in step 1, the RoQME model can be extended to include relevant (non-functional) properties, observations, variables, etc. Next, you can find an example .roqme model including:
 
-    1.	Three contexts: _bump_, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step vi); and _bumpEvent_ and _bumpCount_, which are two additional contexts derived from _bump_. **IMPORTANT**: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
+    1.	Three contexts: _bump_, which is a primitive context (the one directly provided by the corresponding Smartsoft service according to the mapping created in step 1.vi); and _bumpEvent_ and _bumpCount_, which are two additional contexts derived from _bump_. **IMPORTANT**: adding new primitive contexts requires appropriately updating the corresponding .roqmemap model!!
     
     1.	The _safety_ property that takes a default value of 1; and
     
@@ -235,14 +235,14 @@
     
     **_RoQME - > Generate Metrics Provider_** 
     
-    This generation process will create two projects: (1) a QoSMetricProvider project; and (2) CommRoqmeEstimate project. The former includes the generated Smartsoft component model for the QoS Metric Provider. Smartsoft will use this model as an input to generate the corresponding software. The latter includes the definition of the communication objects used by the QoS metric provider component to communicate the estimated metrics to other components. 
+    This generation process will create two projects: (1) a **_QoSMetricProvider project_**; and (2) **_CommRoqmeEstimate project_**. The former includes the generated Smartsoft component model for the QoS Metric Provider. Smartsoft will use this model as an input to generate the corresponding software. The latter includes the definition of the communication objects used by the QoS metric provider component to communicate the estimated metrics to other components. 
 
     The following figure illustrates the structure of the generated Smartsoft component model, including (1) the inputs obtained from the external context providers (red square); (2) the three main processes carried out by the component (i.e., context monitoring, event processing, and probabilistic reasoning) connected through the so called RoQME Data Space (blue square); and (3) the structure of the communication objects used to provide the metrics to other components (green square).
 ![](https://github.com/roqme/robmosys-itp/blob/master/docs/img/Smartsoft.PNG)
  
 4.	Compiling the generated C/C++ code.
 
-Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are implemented in C/C++ and, thus, need to be compiled following the steps indicated next:
+      Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are implemented in C/C++ and, thus, need to be compiled following the steps indicated next:
 
    1.	Copy the following code at the end of the .bashrc file, available at: “/home/smartsoft”, in order to creates the ROQME_ROOT, LD_LIBRARY_PATH and CPATH environment variables: 
         ```
@@ -250,7 +250,7 @@ Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are impl
         export LD_LIBRARY_PATH=$ROQME_ROOT/roqmeDDS/lib:$LD_LIBRARY_PATH
         export CPATH=$ROQME_ROOT/roqmeDDS/include:$ROQME_ROOT/roqmeDDS/idl:$CPATH
         ```
-**FOR THE DDS Library**
+      **FOR THE DDS Library**
     
    2.	Move to the generated “roqme-dds” project, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/roqme-dds/cpp/roqmeDDS”, open a new terminal and execute the following commands: 
         ```
@@ -258,7 +258,7 @@ Both the RoQME Data Space (based on DDS) and the probabilistic reasoner are impl
         ./gen_makefile.sh
         make
         ```
- **FOR THE Probabilistic Reasoner** 
+      **FOR THE Probabilistic Reasoner** 
 
    3.	Follow the same instructions as for the DDS Library but for the “reasoner project”, available at: “/home/smartsoft/workspaces/SmartMDSD-Toolchain/QoSMetricProvider/reasoner”
 

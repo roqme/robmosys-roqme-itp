@@ -7,7 +7,7 @@
 
 2.	Import and run the virtual machine using, e.g., Virtualbox (https://www.virtualbox.org/).
 
-**IMPORTANT: All the instructions included next must be executed on the SmartMDSD virtual machine** 
+    **IMPORTANT: All the instructions included next must be executed on the SmartMDSD virtual machine** 
 
 3.	Enable “copy & paste” and “drag & drop” between your host OS and the virtual OS:
     1.	Devices -> Insert Guest Additions CD Image 
@@ -17,7 +17,7 @@
     
 4.	Download OpenSliceDDS Community Edition from: https://github.com/ADLINK-IST/opensplice/releases  
 
-![](https://github.com/roqme/robmosys-itp/blob/master/docs/img/VersionDDS.png)
+    ![](https://github.com/roqme/robmosys-itp/blob/master/docs/img/VersionDDS.png)
 
 5.	Create a new folder "OpenSpliceDDS" into "/home/smartsoft" 
 
@@ -27,47 +27,47 @@
     
     Original file
     ```
-    1	if [ "${SPLICE_ORB:=}" = "" ]
-    2	then
-    3	SPLICE_ORB=DDS_OpenFusion_1_6_1
-    4	export SPLICE_ORB
-    5	fi
-    6	if [ "${SPLICE_JDK:=}" = "" ]
-    7	then
-    8	SPLICE_JDK=jdk
-    9	export SPLICE_JDK
-    10	fi
-    11	if [ -n "${BASH_VERSION}" ]
-    12	then
-    13	OSPL_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    14	else
-    15	echo "Please manually set OSPL_HOME to the install directory."
-    16	fi
-    17	PATH=$OSPL_HOME/bin:$PATH
-    19	LD_LIBRARY_PATH=$OSPL_HOME/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH
-    20	CPATH=$OSPL_HOME/include:$OSPL_HOME/include/sys:${CPATH:=}
-    21	if [ "${OSPL_URI:=}" = "" ]
-    22	then
-    23	OSPL_URI=file://$OSPL_HOME/etc/config/ospl.xml
-    24	export OSPL_URI
-    25	fi
-    26	OSPL_TMPL_PATH=$OSPL_HOME/etc/idlpp
-    27	. $OSPL_HOME/etc/java/defs.$SPLICE_JDK
-    28	export OSPL_HOME PATH LD_LIBRARY_PATH CPATH OSPL_TMPL_PATH VORTEX_DIR
+       1	if [ "${SPLICE_ORB:=}" = "" ]
+       2	then
+       3	SPLICE_ORB=DDS_OpenFusion_1_6_1
+       4	export SPLICE_ORB
+       5	fi
+       6	if [ "${SPLICE_JDK:=}" = "" ]
+       7	then
+       8	SPLICE_JDK=jdk
+       9	export SPLICE_JDK
+      10	fi
+      11	if [ -n "${BASH_VERSION}" ]
+      12	then
+      13	OSPL_HOME="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      14	else
+      15	echo "Please manually set OSPL_HOME to the install directory."
+      16	fi
+      17	PATH=$OSPL_HOME/bin:$PATH
+      19	LD_LIBRARY_PATH=$OSPL_HOME/lib${LD_LIBRARY_PATH:+:}$LD_LIBRARY_PATH
+      20	CPATH=$OSPL_HOME/include:$OSPL_HOME/include/sys:${CPATH:=}
+      21	if [ "${OSPL_URI:=}" = "" ]
+      22	then
+      23	OSPL_URI=file://$OSPL_HOME/etc/config/ospl.xml
+      24	export OSPL_URI
+      25	fi
+      26	OSPL_TMPL_PATH=$OSPL_HOME/etc/idlpp
+      27	. $OSPL_HOME/etc/java/defs.$SPLICE_JDK
+      28	export OSPL_HOME PATH LD_LIBRARY_PATH CPATH OSPL_TMPL_PATH VORTEX_DIR
     ```
 8.	Add line 17 as follows:
     
     Edited file
     ```
-       1	    if [ "${SPLICE_ORB:=}" = "" ]
-       2	    then
-       3	    SPLICE_ORB=DDS_OpenFusion_1_6_1
-       4	    export SPLICE_ORB
-       5	    fi
-       6	    if [ "${SPLICE_JDK:=}" = "" ]
-       7	    then
-       8	    SPLICE_JDK=jdk
-       9	    export SPLICE_JDK
+        1	    if [ "${SPLICE_ORB:=}" = "" ]
+        2	    then
+        3	    SPLICE_ORB=DDS_OpenFusion_1_6_1
+        4	    export SPLICE_ORB
+        5	    fi
+        6	    if [ "${SPLICE_JDK:=}" = "" ]
+        7	    then
+        8	    SPLICE_JDK=jdk
+        9	    export SPLICE_JDK
        10	fi
        11	if [ -n "${BASH_VERSION}" ]
        12	then
@@ -110,34 +110,32 @@
 
     Original file
     ```    
-    1	-startup
-    2	plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
-    3	--launcher.library
-    4	plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.551.v20171108-1834
-    5	-product
-    6	org.eclipse.epp.package.modeling.product
-    7	-showsplash
-    8	org.eclipse.epp.package.common
-    9	--launcher.defaultAction
-    10	openFile
-    11	
-    12	
-    13	--launcher.appendVmargs
-    14	-vm
-    15	/usr/lib/jvm/java-8-openjdk-amd64/bin
-    16	-vmargs
-    17	-Dosgi.requiredJavaVersion=1.8
-    18	-Dosgi.instance.area.default=@user.home/eclipse-workspace
-    19	-XX:+UseG1GC
-    20	-XX:+UseStringDeduplication
-    21	--add-modules=ALL-SYSTEM
-    22	-Dosgi.requiredJavaVersion=1.8
-    23	-Xms256m
-    24	-Xmx1024m
-    25	--add-modules=ALL-SYSTEM
-    26	-Declipse.p2.max.threads=10
-    27	-Doomph.update.url=http://download.eclipse.org/oomph/updates/milestone/latest
-    28	-Doomph.redirection.index.redirection=index:/->http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/
+        1	-startup
+        2	plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
+        3	--launcher.library
+        4	plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.551.v20171108-1834
+        5	-product
+        6	org.eclipse.epp.package.modeling.product
+        7	-showsplash
+        8	org.eclipse.epp.package.common
+        9	--launcher.defaultAction
+       10	openFile
+       11	--launcher.appendVmargs
+       12	-vm
+       13	/usr/lib/jvm/java-8-openjdk-amd64/bin
+       14	-vmargs
+       15	-Dosgi.requiredJavaVersion=1.8
+       16	-Dosgi.instance.area.default=@user.home/eclipse-workspace
+       17	-XX:+UseG1GC
+       18	-XX:+UseStringDeduplication
+       19	--add-modules=ALL-SYSTEM
+       20	-Dosgi.requiredJavaVersion=1.8
+       21	-Xms256m
+       22	-Xmx1024m
+       23	--add-modules=ALL-SYSTEM
+       24	-Declipse.p2.max.threads=10
+       25	-Doomph.update.url=http://download.eclipse.org/oomph/updates/milestone/latest
+       26	-Doomph.redirection.index.redirection=index:/->http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/
     ```
 15.	Copy lines 11 and 12 and save the file:
 
@@ -174,11 +172,17 @@
     ```
 
 16.	Installation of the RoQME Plugin:
+
     1.	Download the RoQME plugin (RoQME-Eclipse-Tools-vXXXX) from: 
-    https://github.com/roqme/robmosys-itp/blob/master/downloads/
+    
+        https://github.com/roqme/robmosys-itp/blob/master/downloads/
+    
     1.	Create a new “RoQME” folder at “/home/smartsoft” and extract the file previously downloaded in (i)
+    
     1.	Launch Eclipse and install the RoQME plugin in Eclipse, by selecting the following menu options:
-    _Help - > Install New Software… - > Add… - > Local… - > {Repository path}_
+       
+         **_Help - > Install New Software… - > Add… - > Local… - > {Repository path}_**
+       
     1.	Restart Eclipse
  
 ## Using RoQME within SmartMDSD:

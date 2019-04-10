@@ -272,4 +272,4 @@
 	make
 	```
 
-Et voilá! The generated RoQME component can now be used within any Smartsoft architecture as a QoS metrics provider.
+	Et voilá! The generated RoQME component can now be used within any Smartsoft architecture as a QoS metrics provider.

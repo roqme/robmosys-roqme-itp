@@ -1,0 +1,15 @@
+feature(splicebasics){
+  includes += .
+  includes += $(OSPL_HOME)/include/sys
+  includes += $(OSPL_HOME)/include
+  includes += $(OSPL_HOME)/include/dcps/C++/SACPP
+  includes += $(OSPL_HOME)/include/dcps/C++/isocpp2
+  libpaths += $(OSPL_HOME)/lib
+  lit_libs += dcpssacpp
+  lit_libs += dcpsgapi
+  lit_libs += ddsdatabase
+  lit_libs += ddsos
+  lit_libs += ddskernel
+  lit_libs += dcpsisocpp2
+
+}

@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: roqme.generator
+Bundle-SymbolicName: roqme.generator;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: roqme.generator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.xtend.lib,
+ org.eclipse.xtext.generator,
+ roqme.metamodel,
+ org.eclipse.emf.mwe2.launch,
+ org.eclipse.xtext.ui,
+ roqme.mapping.editor.ui
+Export-Package: roqme.generator;
+  uses:="com.google.inject,
+   org.eclipse.xtext.generator,
+   org.eclipse.core.resources,
+   org.eclipse.emf.ecore.resource"
+Import-Package: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.emf.ecore.util,
+ org.eclipse.ui.part,
+ org.osgi.framework
+Bundle-ClassPath: lib/commons-math3-3.6.1.jar,
+ .
+Bundle-Vendor: University of Extremadura, University of Málaga, Biometric Vox S.L.
+

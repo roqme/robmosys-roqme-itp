@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/roqme.metamodel/src" modelPluginID="roqme.metamodel"
+    modelName="Roqmekernel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../datatypes/roqmedatatypes.genmodel#//datatypes ../expressions/roqmeexpressions.genmodel#//expressions"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>roqmekernel.ecore</foreignModel>
+  <genPackages prefix="Kernel" basePackage="roqme.metamodel" disposableProviderFactory="true"
+      ecorePackage="roqmekernel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roqmekernel.ecore#//StrengthEnum">
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//StrengthEnum/VERY_HIGH"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//StrengthEnum/HIGH"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//StrengthEnum/MEDIUM"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//StrengthEnum/LOW"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//StrengthEnum/VERY_LOW"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roqmekernel.ecore#//InfluenceEnum">
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//InfluenceEnum/REINFORCE"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmekernel.ecore#//InfluenceEnum/UNDERMINE"/>
+    </genEnums>
+    <genClasses ecoreClass="roqmekernel.ecore#//PrimitiveContext"/>
+    <genClasses ecoreClass="roqmekernel.ecore#//DerivedContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//DerivedContext/definition"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//GeneralPurposeVariable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//GeneralPurposeVariable/definition"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//Observation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//Observation/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//Observation/pattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//Observation/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//Property">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//Property/transformation"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//BeliefVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//BeliefVariable/reference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//BeliefVariable/survival"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//SetEvidence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//SetEvidence/influence"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//SetEvidence/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//SetEvidence/strength"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//SetEvidence/survival"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//SetEvidence/conditionedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//Import/importURI"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//Parameter"/>
+    <genClasses image="false" ecoreClass="roqmekernel.ecore#//Context"/>
+    <genClasses image="false" ecoreClass="roqmekernel.ecore#//Action"/>
+    <genClasses ecoreClass="roqmekernel.ecore#//SetVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//SetVariable/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//SetVariable/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//Timer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//Timer/once"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//Timer/definition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//Timer/offset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmekernel.ecore#//Timer/paused"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmekernel.ecore#//TimerAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//TimerAction/timer"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmekernel.ecore#//StartTimer"/>
+    <genClasses ecoreClass="roqmekernel.ecore#//StopTimer"/>
+    <genClasses ecoreClass="roqmekernel.ecore#//ResumeTimer"/>
+    <genClasses ecoreClass="roqmekernel.ecore#//ClearEvidence">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmekernel.ecore#//ClearEvidence/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

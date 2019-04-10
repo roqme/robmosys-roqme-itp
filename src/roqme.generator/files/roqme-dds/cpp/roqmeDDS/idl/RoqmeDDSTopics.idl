@@ -1,0 +1,92 @@
+/**
+ * @addtogroup RoqmeData
+ */
+/** @{*/
+/** @file */
+
+module RoqmeDDSTopics
+{
+
+	/**
+	 * Context topics
+	 */
+
+	typedef sequence<long long> intseq;
+	struct RoqmeIntContext
+	{
+		string name;
+		intseq value;
+	};
+#pragma keylist RoqmeIntContext name
+
+	typedef sequence<unsigned long long> uintseq;
+	struct RoqmeUIntContext
+	{
+		string name;
+		uintseq value;
+	};
+#pragma keylist RoqmeUIntContext name
+
+	typedef sequence<double> doubleseq;
+	struct RoqmeDoubleContext
+	{
+		string name;
+		doubleseq value;
+	};
+#pragma keylist RoqmeDoubleContext name
+
+	typedef sequence<boolean> boolseq;
+	struct RoqmeBoolContext
+	{
+		string name;
+		boolseq value;
+	};
+#pragma keylist RoqmeBoolContext name
+
+	typedef sequence<string> eventseq;
+	struct RoqmeEventContext
+	{
+		string name;
+		eventseq value;
+	};
+#pragma keylist RoqmeEventContext name
+
+	typedef sequence<string> enumseq;
+	struct RoqmeEnumContext
+	{
+		string name;
+		enumseq value;
+	};
+#pragma keylist RoqmeEnumContext name
+
+	/*
+	 * Observation topic
+	 */
+	struct RoqmeObservation
+	{
+		string name;
+	};
+#pragma keylist RoqmeObservation name
+
+	/*
+	 * Estimate topic
+	 */
+	struct RoqmeEstimate
+	{
+		string name;
+		double value;
+	};
+#pragma keylist RoqmeEstimate name
+
+	typedef sequence<string> id_seq;
+	typedef sequence<double> value_seq;
+	struct RoqmeRanking
+	{
+		string metricName;
+		id_seq ids;
+		value_seq values;
+	};
+#pragma keylist RoqmeRanking metricName
+};
+
+/** @}*/

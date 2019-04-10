@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expressions" nsURI="https://robmosys.eu/roqme/expressions" nsPrefix="roqme.expressions">
+  <eClassifiers xsi:type="ecore:EClass" name="Term" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstTerm" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass ../datatypes/roqmedatatypes.ecore#//TypedValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VarTerm" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="ecore:EClass ../datatypes/roqmedatatypes.ecore#//TypedVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryTermOp" abstract="true" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//Term"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" lowerBound="1" eType="#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryTermOp" abstract="true" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionTerm" abstract="true" eSuperTypes="#//NaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryLogicalOp" abstract="true" eSuperTypes="#//UnaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryPatternOp" abstract="true" eSuperTypes="#//UnaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NotBooleanTerm" eSuperTypes="#//UnaryLogicalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RepeatTerm" eSuperTypes="#//UnaryPatternOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrep" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryArithOp" abstract="true" eSuperTypes="#//BinaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryRelationalOp" abstract="true"
+      eSuperTypes="#//BinaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryLogicalOp" abstract="true" eSuperTypes="#//BinaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryPatternOp" abstract="true" eSuperTypes="#//BinaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AddTerm" eSuperTypes="#//BinaryArithOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultTerm" eSuperTypes="#//BinaryArithOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SubTerm" eSuperTypes="#//BinaryArithOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DivTerm" eSuperTypes="#//BinaryArithOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AndBooleanTerm" eSuperTypes="#//BinaryLogicalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrBooleanTerm" eSuperTypes="#//BinaryLogicalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LessEqualTerm" eSuperTypes="#//BinaryRelationalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterEqualTerm" eSuperTypes="#//BinaryRelationalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NotEqualTerm" eSuperTypes="#//BinaryRelationalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualTerm" eSuperTypes="#//BinaryRelationalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanTerm" eSuperTypes="#//BinaryRelationalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LessThanTerm" eSuperTypes="#//BinaryRelationalOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FollowedByTerm" eSuperTypes="#//BinaryPatternOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ArithFunction" eSuperTypes="#//FunctionTerm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="#//ArithFtnEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AggregationFunction" eSuperTypes="#//FunctionTerm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="#//AggregationFtnEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternFunction" eSuperTypes="#//FunctionTerm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="#//PatternFtnEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ArithFtnEnum">
+    <eLiterals name="POW"/>
+    <eLiterals name="SQRT" value="1"/>
+    <eLiterals name="EXP" value="2"/>
+    <eLiterals name="ABS" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AggregationFtnEnum">
+    <eLiterals name="AVG"/>
+    <eLiterals name="MIN" value="3"/>
+    <eLiterals name="MAX" value="4"/>
+    <eLiterals name="COUNT" value="5"/>
+    <eLiterals name="SUM" value="6"/>
+    <eLiterals name="DECREASING" value="1"/>
+    <eLiterals name="INCREASING" value="2"/>
+    <eLiterals name="STABLE" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PatternFtnEnum">
+    <eLiterals name="EVENT_WHEN"/>
+    <eLiterals name="UPDATE" value="1"/>
+    <eLiterals name="PERIOD" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeneralExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextPattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputTransformation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="term" lowerBound="1" eType="#//Term"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileTerm" eSuperTypes="#//BinaryPatternOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalTerm" eSuperTypes="#//NaryTermOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NaryTermOp" abstract="true" eSuperTypes="#//Term">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terms" upperBound="-1"
+        eType="#//Term" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfTerm" eSuperTypes="#//Term"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionFunction" eSuperTypes="#//FunctionTerm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="#//CollectionFtnEnum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CollectionFtnEnum">
+    <eLiterals name="FIRST"/>
+    <eLiterals name="LAST" value="1"/>
+    <eLiterals name="AT" value="2"/>
+    <eLiterals name="SIZE" value="3"/>
+    <eLiterals name="IS_EMPTY" value="4"/>
+    <eLiterals name="INCLUDES" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnceTerm" eSuperTypes="#//UnaryPatternOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RangeTerm" eSuperTypes="#//UnaryPatternOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModTerm" eSuperTypes="#//BinaryArithOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ScheduleFunction" eSuperTypes="#//FunctionTerm">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndEventTerm" eSuperTypes="#//BinaryPatternOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrEventTerm" eSuperTypes="#//BinaryPatternOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NotEventTerm" eSuperTypes="#//UnaryPatternOp"/>
+</ecore:EPackage>

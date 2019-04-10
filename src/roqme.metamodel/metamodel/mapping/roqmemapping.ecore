@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mapping" nsURI="https://robmosys.eu/roqme/mapping" nsPrefix="roqme.mapping">
+  <eClassifiers xsi:type="ecore:EClass" name="MappingModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="monitors" upperBound="-1"
+        eType="#//Monitor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
+        eType="#//Import" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Monitor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+        eType="ecore:EClass ../kernel/roqmekernel.ecore#//Context"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" lowerBound="1"
+        eType="ecore:EClass ../../../org.ecore.service.serviceDefinition/model/serviceDefinition.ecore#//CommunicationServiceDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opts" upperBound="-1" eType="#//ConfigOpt"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigOpt" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Period" eSuperTypes="#//ConfigOpt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinTimeBtwUpdates" eSuperTypes="#//ConfigOpt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinDiffBtwUpdates" eSuperTypes="#//ConfigOpt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Import">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

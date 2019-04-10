@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/roqme.metamodel/src" editDirectory="/roqme.metamodel.edit/src"
+    editorDirectory="/roqme.metamodel.editor/src" modelPluginID="roqme.metamodel"
+    modelName="Roqmeexpressions" editPluginClass="roqme.metamodel.expressions.provider.RoqmeexpressionsEditPlugin"
+    editorPluginClass="roqme.metamodel.expressions.presentation.RoqmeexpressionsEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="roqme.metamodel.expressions.tests.RoqmeexpressionsAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="roqme.metamodel.edit" editorPluginID="roqme.metamodel.editor" usedGenPackages="../datatypes/roqmedatatypes.genmodel#//datatypes"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>roqmeexpressions.ecore</foreignModel>
+  <genPackages prefix="Expressions" basePackage="roqme.metamodel" disposableProviderFactory="true"
+      fileExtensions="roqme" ecorePackage="roqmeexpressions.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roqmeexpressions.ecore#//ArithFtnEnum">
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//ArithFtnEnum/POW"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//ArithFtnEnum/SQRT"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//ArithFtnEnum/EXP"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//ArithFtnEnum/ABS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roqmeexpressions.ecore#//AggregationFtnEnum">
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/AVG"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/MIN"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/MAX"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/COUNT"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/SUM"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/DECREASING"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/INCREASING"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//AggregationFtnEnum/STABLE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roqmeexpressions.ecore#//PatternFtnEnum">
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//PatternFtnEnum/EVENT_WHEN"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//PatternFtnEnum/UPDATE"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//PatternFtnEnum/PERIOD"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roqmeexpressions.ecore#//CollectionFtnEnum">
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//CollectionFtnEnum/FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//CollectionFtnEnum/LAST"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//CollectionFtnEnum/AT"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//CollectionFtnEnum/SIZE"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//CollectionFtnEnum/IS_EMPTY"/>
+      <genEnumLiterals ecoreEnumLiteral="roqmeexpressions.ecore#//CollectionFtnEnum/INCLUDES"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//Term"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//ConstTerm">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//ConstTerm/value"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//VarTerm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//VarTerm/variable"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//BinaryTermOp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//BinaryTermOp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//BinaryTermOp/right"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//UnaryTermOp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//UnaryTermOp/term"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//FunctionTerm"/>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//UnaryLogicalOp"/>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//UnaryPatternOp"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//NotBooleanTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//RepeatTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//RepeatTerm/nrep"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//BinaryArithOp"/>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//BinaryRelationalOp"/>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//BinaryLogicalOp"/>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//BinaryPatternOp"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//AddTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//MultTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//SubTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//DivTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//AndBooleanTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//OrBooleanTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//LessEqualTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//GreaterEqualTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//NotEqualTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//EqualTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//GreaterThanTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//LessThanTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//FollowedByTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//ArithFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//ArithFunction/name"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//AggregationFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//AggregationFunction/name"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//PatternFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//PatternFunction/name"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//GeneralExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//GeneralExpression/term"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//ContextPattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//ContextPattern/term"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//OutputTransformation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//OutputTransformation/term"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//WhileTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//ConditionalTerm"/>
+    <genClasses image="false" ecoreClass="roqmeexpressions.ecore#//NaryTermOp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmeexpressions.ecore#//NaryTermOp/terms"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//SelfTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//CollectionFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//CollectionFunction/name"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//OnceTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//RangeTerm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//RangeTerm/lowerBound"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//RangeTerm/upperBound"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//ModTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//ScheduleFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmeexpressions.ecore#//ScheduleFunction/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//AndEventTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//OrEventTerm"/>
+    <genClasses ecoreClass="roqmeexpressions.ecore#//NotEventTerm"/>
+  </genPackages>
+</genmodel:GenModel>

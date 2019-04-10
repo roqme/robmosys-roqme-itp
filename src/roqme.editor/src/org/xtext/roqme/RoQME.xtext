@@ -1,0 +1,484 @@
+//  This file belongs to the RoQME toolchain.
+//  Copyright (C) 2019  University of Extremadura, University of Málaga, Biometric Vox.
+//
+//  RoQME is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation; either version 3 of the License, or
+//  any later version.
+//
+//  RoQME is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  GNU GPLv3 link: http://www.gnu.org/licenses/gpl-3.0.html
+
+grammar org.xtext.roqme.RoQME with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "platform:/resource/roqme.metamodel/metamodel/expressions/roqmeexpressions.ecore" as expressions
+import "platform:/resource/roqme.metamodel/metamodel/datatypes/roqmedatatypes.ecore" as datatypes
+import "platform:/resource/roqme.metamodel/metamodel/kernel/roqmekernel.ecore" as kernel
+
+RoqmeModel returns datatypes::RoqmeModel:
+	(description=ElementDescription? 'roqme' namespace=EString)?
+	(sentences+=Import)*
+	(dataTypes  += DataTypeDefinition
+	| variables  += TypedVariable
+	| sentences += Sentence)*;
+
+
+/* *********************************
+ * KERNEL EPACKAGE
+ * *********************************/
+
+/*
+ * Variables
+ */
+ 
+TypedVariable returns datatypes::TypedVariable:
+	Parameter | Timer | GeneralPurposeVariable | Context | BeliefVariable;
+ 
+Context returns kernel::Context:
+	DerivedContext | PrimitiveContext;
+
+PrimitiveContext returns kernel::PrimitiveContext:
+	(description=ElementDescription)?
+	'context' name=ID ':' declaration = DataTypeDeclaration;
+
+DerivedContext returns kernel::DerivedContext:
+	(description=ElementDescription)?
+	'context' name=ID ':' declaration = DataTypeDeclaration
+		':=' definition = ContextPattern;
+
+GeneralPurposeVariable returns kernel::GeneralPurposeVariable:
+	'var' name=ID ':' declaration = DataTypeDeclaration 
+	(':=' definition=GeneralExpression);
+
+Parameter returns kernel::Parameter:
+	(description=ElementDescription)?
+	'param' name=ID ':' declaration = DataTypeDeclaration 
+	('default' initializedTo=TypedValue)?;
+
+Timer returns kernel::Timer:
+	'timer' name=ID declaration = InbuiltDeclaration 
+	(('offset' offset=TimeValue)? 
+		& (once ?= 'onetime')?
+		& (paused ?= 'paused')?
+		& (':=' definition=GeneralExpression));
+
+BeliefVariable returns kernel::BeliefVariable:
+	BeliefVariableImpl | Property;
+
+BeliefVariableImpl returns kernel::BeliefVariable:
+	(description=ElementDescription)?
+	'beliefvar' name=ID declaration = InbuiltDeclaration
+	(('reference' reference=EDouble)? & ('survival' survival=TimeValue)?);
+	
+Property returns kernel::Property:
+	(description=ElementDescription)?
+	'property' name=ID 
+	((':' declaration = DataTypeDeclaration ':=' transformation=OutputTransformation) 
+		| declaration = InbuiltDeclaration)
+	(('reference' reference=EDouble)? 
+		& ('survival' survival=TimeValue)?);
+
+
+/*
+ * Sentencies
+ */
+
+Sentence returns datatypes::Sentence:
+	Observation;
+
+Import returns kernel::Import:
+	'import' importURI=EString;
+
+Observation returns kernel::Observation:
+	(description=ElementDescription)?
+	'observation' name=ID ':' pattern=ContextPattern 
+	(actions+=Action | ('{' (actions+=Action)+ '}'));
+	
+Action returns kernel::Action:
+	SetVariable | ClearEvidence | SetEvidence | TimerAction;
+	
+TimerAction returns kernel::TimerAction:
+	StartTimer | StopTimer | ResumeTimer;
+	
+SetVariable returns kernel::SetVariable:
+	'sets' variable = [datatypes::TypedVariable | QualifiedName] 
+	':=' expression=GeneralExpression;
+
+ClearEvidence returns kernel::ClearEvidence:
+	'clears' target = [kernel::BeliefVariable | QualifiedName];
+
+SetEvidence returns kernel::SetEvidence:
+	influence=InfluenceEnum 
+	target = [kernel::BeliefVariable | QualifiedName]
+	((strength=StrengthEnum)? & 
+	('survival' survival=TimeValue)?);
+	
+enum InfluenceEnum returns kernel::InfluenceEnum:
+	REINFORCE = 'reinforces' | UNDERMINE = 'undermines';
+	
+enum StrengthEnum returns kernel::StrengthEnum:
+	VERY_HIGH = 'veryhigh' | HIGH = 'high' | MEDIUM | LOW = 'low' | VERY_LOW = 'verylow';
+	
+StartTimer returns kernel::StartTimer:
+	'starts' timer = [kernel::Timer | QualifiedName];
+	
+StopTimer returns kernel::StopTimer:
+	'stops' timer = [kernel::Timer | QualifiedName];
+	
+ResumeTimer returns kernel::ResumeTimer:
+	'resumes' timer = [kernel::Timer | QualifiedName];	
+
+
+/* *********************************
+ * DATATYPE EPACKAGE
+ * *********************************
+
+/* 
+ * Data type definitions
+ */
+
+DataTypeDefinition returns datatypes::DataTypeDefinition:
+	'type' name=EString ':' dataType=DataType;
+
+DataType returns datatypes::DataType:
+	BooleanType | EnumType | EventType | NumericType | UnitMeasuredType | TimeType;
+
+BooleanType returns datatypes::BooleanType:
+	{datatypes::BooleanType}
+	'boolean' ('['cardinality=INT']')?;
+
+EnumType returns datatypes::EnumType:
+	'enum' ('['cardinality=INT']')? 
+	'{' 
+		literals += EnumLiteral (',' literals += EnumLiteral )+
+	'}';
+	
+EnumLiteral returns datatypes::EnumLiteral:
+	{datatypes::EnumLiteral}
+	name=ID;
+
+EventType returns datatypes::EventType:
+	{datatypes::EventType}
+	'eventtype' ('['cardinality=INT']')?;
+
+NumericType returns datatypes::NumericType:
+	{datatypes::NumericType}
+	'number' ('['cardinality=INT']')?
+	(constraints+=NumericTypeConstraint)*;
+
+NumericTypeConstraint returns datatypes::NumericTypeConstraint:
+	LowerBound | UpperBound;
+
+LowerBound returns datatypes::LowerBound:
+	'lower' value=EDouble;
+
+UpperBound returns datatypes::UpperBound:
+	'upper' value=EDouble;
+
+UnitMeasuredType returns datatypes::UnitMeasuredType:
+	{datatypes::UnitMeasuredType}
+	'number' ('['cardinality=INT']')?
+	(constraints+=NumericTypeConstraint)*
+	'unit' unit=EString
+	(constraints+=NumericTypeConstraint)*;
+
+TimeType returns datatypes::TimeType:
+	{datatypes::TimeType}
+	'time' ('['cardinality=INT']')?;
+
+
+/*
+ * Typed Values
+ */	
+	
+TypedValue returns datatypes::TypedValue:
+	SingleValue | ArrayValue;
+		
+SingleValue returns datatypes::SingleValue:
+	BooleanValue | EnumValue | NumericValue | EventValue;
+
+EventValue returns datatypes::EventValue:
+	{datatypes::EventValue}
+	'event';
+
+BooleanValue returns datatypes::BooleanValue:
+	{datatypes::BooleanValue} 
+	value = EBoolean;
+
+EnumValue returns datatypes::EnumValue:
+	{datatypes::EnumValue}
+	value=[datatypes::EnumLiteral | LiteralQualifiedName];
+
+NumericValue returns datatypes::NumericValue:
+	NumericValue_Impl | UnitMeasuredValue;
+	
+UnitMeasuredValue returns datatypes::UnitMeasuredValue:
+	UnitMeasuredValue_Impl | TimeValue;
+
+NumericValue_Impl returns datatypes::NumericValue:
+	{datatypes::NumericValue}
+	value=EDouble;
+
+UnitMeasuredValue_Impl returns datatypes::UnitMeasuredValue:
+	{datatypes::UnitMeasuredValue}
+	value=EDouble unit=EString;
+
+TimeValue returns datatypes::TimeValue:
+	{datatypes::TimeValue}
+	value=EDouble unit=TimeUnitEnum;
+	
+TimeUnitEnum returns ecore::EString: 
+	'milliseconds' | 'seconds' | 'minutes' | 'hours' | 'days' 
+	| 'millisecond' | 'second' | 'minute' | 'hour' | 'day';
+
+ArrayValue returns datatypes::ArrayValue:
+	NumericArray | BooleanArray | EnumArray;
+	
+BooleanArray returns datatypes::ArrayValue:
+	'[' values+=BooleanValue (',' values+=BooleanValue)* ']';
+	
+EnumArray returns datatypes::ArrayValue:
+	'[' values+=EnumValue (',' values+=EnumValue)* ']';
+	
+NumericArray returns datatypes::ArrayValue:
+	NumericArray_Impl | UnitMeasuredArray;
+	
+UnitMeasuredArray returns datatypes::ArrayValue:
+	UnitMeasuredArray_Impl | TimeArray;
+	
+NumericArray_Impl returns datatypes::ArrayValue:
+	'[' values+=NumericValue_Impl (',' values+=NumericValue_Impl)* ']';
+	
+UnitMeasuredArray_Impl returns datatypes::ArrayValue:
+	'[' values+=UnitMeasuredValue_Impl (',' values+=UnitMeasuredValue_Impl)* ']';
+	
+TimeArray returns datatypes::ArrayValue:
+	'[' values+=TimeValue (',' values+=TimeValue)* ']';
+	
+
+/*
+ * Typed Variables
+ */
+
+DataTypeDeclaration returns datatypes::DataTypeDeclaration:
+	InbuiltDeclaration | ReferencedDeclaration | ContainedDeclaration;
+
+ContainedDeclaration returns datatypes::ContainedDeclaration:
+	type=DataType;
+
+InbuiltDeclaration returns datatypes::InbuiltDeclaration:
+	{datatypes::InbuiltDeclaration};
+
+ReferencedDeclaration returns datatypes::ReferencedDeclaration:
+	type=[datatypes::DataTypeDefinition];
+
+
+
+/* *********************************
+ * EXPRESSIONS EPACKAGE
+ * *********************************/
+
+GeneralExpression returns expressions::GeneralExpression:
+	term = Term;
+
+OutputTransformation returns expressions::OutputTransformation:
+	term = Term;
+
+ContextPattern returns expressions::ContextPattern:
+	term = Term;
+
+Term returns expressions::Term:
+	(OnceTerm | WhileTerm)
+;
+
+
+/*
+ * Event Pattern Operators
+ */
+
+//OnceTerm returns expressions::Term:
+//	WhileTerm
+//	('once' {expressions::OnceTerm.term=current})?;
+	
+OnceTerm returns expressions::OnceTerm:
+	'once' term=WhileTerm;
+
+WhileTerm returns expressions::Term:
+	RepetionTerm
+	({expressions::WhileTerm.left=current} 'while' '(' right=OrBooleanTerm ')')?;
+
+RepetionTerm returns expressions::Term:
+	SequenceTerm
+	(({expressions::RepeatTerm.term=current} 'repeat' '(' nrep=INT ')')
+		| ({expressions::RangeTerm.term=current} 'range' '(' lowerBound=INT ',' upperBound=INT ')'))?;
+
+SequenceTerm returns expressions::Term:
+	OrEventTerm
+	({expressions::FollowedByTerm.left=current} '->'  
+		right=ConditionalTerm
+	)*;
+
+OrEventTerm returns expressions::Term:
+	AndEventTerm
+	({expressions::OrEventTerm.left=current} 'or' right=AndEventTerm)*;
+
+AndEventTerm returns expressions::Term:
+	(NotEventTerm | ConditionalTerm)
+	({expressions::AndEventTerm.left=current} 'and' right= (NotEventTerm | ConditionalTerm) )*;
+
+NotEventTerm returns expressions::Term:
+	{expressions::NotEventTerm}	
+	'not' term=ConditionalTerm;
+
+/*
+ * Conditional Operator 
+ */
+
+ConditionalTerm returns expressions::Term:
+	OrBooleanTerm
+	({expressions::ConditionalTerm.terms+=current} '?' terms+=OrBooleanTerm ':' terms+=ConditionalTerm)?
+;
+
+
+/*
+ * Logical Terms
+ */
+
+OrBooleanTerm returns expressions::Term:
+	AndBooleanTerm
+	({expressions::OrBooleanTerm.left=current} '|' right=AndBooleanTerm)*
+;
+
+AndBooleanTerm returns expressions::Term:
+	(NotBooleanTerm | RelationalTerm)
+	({expressions::AndBooleanTerm.left=current} '&' right= (NotBooleanTerm | RelationalTerm) )*
+;
+
+NotBooleanTerm returns expressions::Term:
+	{expressions::NotBooleanTerm}	
+	'!' term=RelationalTerm
+;
+
+
+/*
+ * Relational Term
+ */
+
+RelationalTerm returns expressions::Term:
+	AdditionTerm (({expressions::EqualTerm.left=current} '=' 
+		| {expressions::LessThanTerm.left=current} '<' 
+		| {expressions::GreaterThanTerm.left=current} '>' 
+		| {expressions::LessEqualTerm.left=current} '<=' 
+		| {expressions::GreaterEqualTerm.left=current} '>=' 
+		| {expressions::NotEqualTerm.left=current} '!='
+	)
+	right=AdditionTerm)?;
+	
+
+/*
+ * Arithmetic Terms
+ */
+
+AdditionTerm returns expressions::Term:
+	MultiplicationTerm 
+	(({expressions::AddTerm.left=current} '+' | {expressions::SubTerm.left=current} '-') right=MultiplicationTerm)*;
+
+MultiplicationTerm returns expressions::Term:
+	PrimaryTerm 
+	(({expressions::MultTerm.left=current} '*' | {expressions::DivTerm.left=current} '/') right=PrimaryTerm)*;
+
+
+/*
+ * Primary Terms
+ */
+
+PrimaryTerm returns expressions::Term:
+	'(' Term ')' |
+	ConstTerm |
+	VarTerm |
+	SelfTerm |
+	FunctionTerm;
+
+VarTerm returns expressions::VarTerm:
+	variable = [datatypes::TypedVariable | QualifiedName];
+
+ConstTerm returns expressions::ConstTerm:
+	value = TypedValue;
+
+SelfTerm returns expressions::SelfTerm:
+	{expressions::SelfTerm}
+	'belief';
+
+/* 
+ * Functions
+ */
+ 
+FunctionTerm returns expressions::FunctionTerm:
+	ArithFunction | AggregationFunction | PatternFunction | CollectionFunction | ScheduleFunction;
+
+ScheduleFunction returns expressions::ScheduleFunction:
+	{expressions::ScheduleFunction}
+	'schedule' '(' pattern=EString ')';
+
+ArithFunction returns expressions::ArithFunction:
+	(terms+=(VarTerm | SelfTerm) "'")? name=ArithFtnEnum ('(' (terms += Term (',' terms += Term)*)? ')')?;
+
+enum ArithFtnEnum returns expressions::ArithFtnEnum:
+	POW = 'pow' | SQRT = 'sqrt' | EXP = 'exp' | ABS = 'abs';
+
+AggregationFunction returns expressions::AggregationFunction:
+	(terms+=(VarTerm | SelfTerm) "'")? name=AggregationFtnEnum ('(' (terms += Term (',' terms += Term)*)? ')')?;
+
+enum AggregationFtnEnum returns expressions::AggregationFtnEnum:
+	AVG = 'avg' | MIN = 'min' | MAX = 'max' | COUNT = 'count' | SUM = 'sum' | DECREASING = 'decreasing' | INCREASING = 'increasing' | STABLE = 'stable';
+
+PatternFunction returns expressions::PatternFunction:
+	(terms+=(VarTerm | SelfTerm) "'")? name=PatternFtnEnum ('(' (terms += Term (',' terms += Term)*)? ')')?;
+
+enum PatternFtnEnum returns expressions::PatternFtnEnum:
+	EVENT_WHEN = 'eventWhen' | UPDATE = 'update' | PERIOD = 'period';
+
+CollectionFunction returns expressions::CollectionFunction:
+	(terms+=(VarTerm | SelfTerm) "'")? name=CollectionFtnEnum ('(' (terms += Term (',' terms += Term)*)? ')')?;
+
+enum CollectionFtnEnum returns expressions::CollectionFtnEnum:
+	FIRST = 'first' | LAST = 'last' | AT = 'at' | SIZE = 'size' | IS_EMPTY = 'isEmpty' | INCLUDES = 'includes';
+	
+
+/* *********************************
+ * Auxiliary grammar
+ * *********************************/
+
+EString returns ecore::EString:
+	STRING | ID;
+
+EDouble returns ecore::EDouble:
+	'-'? INT ('.' INT)?; //'-'? INT? '.' INT (('E'|'e') '-'? INT)?;
+
+EBoolean returns ecore::EBoolean:
+	'true' | 'false';
+	
+QualifiedName returns ecore::EString: 
+	ID ('.' ID)*;
+	
+LiteralQualifiedName returns ecore::EString: 
+	ID ('::' ID)+;
+	
+ElementDescription returns ecore::EString:
+	ROQME_DESCRIPTION;
+
+terminal ROQME_DESCRIPTION  : 
+  '/**' -> '*/';  
+
+@Override 
+terminal ML_COMMENT  : 
+  ('/*' !'*') -> '*/';
+  
+@Override 
+terminal STRING  : 
+  '"' ( '\\'('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"';

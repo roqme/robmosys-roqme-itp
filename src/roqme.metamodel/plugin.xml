@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated roqmedatatypes -->
+      <package
+            uri="https://robmosys.eu/roqme/datatypes"
+            class="roqme.metamodel.datatypes.DatatypesPackage"
+            genModel="metamodel/datatypes/roqmedatatypes.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated roqmeexpressions -->
+      <package
+            uri="https://robmosys.eu/roqme/expressions"
+            class="roqme.metamodel.expressions.ExpressionsPackage"
+            genModel="metamodel/expressions/roqmeexpressions.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated roqmekernel -->
+      <package
+            uri="https://robmosys.eu/roqme/kernel"
+            class="roqme.metamodel.kernel.KernelPackage"
+            genModel="metamodel/kernel/roqmekernel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated roqmemapping -->
+      <package
+            uri="https://robmosys.eu/roqme/mapping"
+            class="roqme.metamodel.mapping.MappingPackage"
+            genModel="metamodel/mapping/roqmemapping.genmodel"/>
+   </extension>
+
+</plugin>

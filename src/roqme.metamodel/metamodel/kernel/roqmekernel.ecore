@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kernel" nsURI="https://robmosys.eu/roqme/kernel" nsPrefix="roqme.kernel">
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveContext" eSuperTypes="#//Context"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DerivedContext" eSuperTypes="#//Context">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" lowerBound="1"
+        eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//ContextPattern"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeneralPurposeVariable" eSuperTypes="../datatypes/roqmedatatypes.ecore#//TypedVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//GeneralExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Observation" eSuperTypes="../datatypes/roqmedatatypes.ecore#//Sentence">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
+        eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//ContextPattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" lowerBound="1"
+        upperBound="-1" eType="#//Action" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//BeliefVariable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transformation" eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//OutputTransformation"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BeliefVariable" eSuperTypes="../datatypes/roqmedatatypes.ecore#//TypedVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0.5"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="survival" eType="ecore:EClass ../datatypes/roqmedatatypes.ecore#//TimeValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetEvidence" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="influence" lowerBound="1"
+        eType="#//InfluenceEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//BeliefVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strength" lowerBound="1"
+        eType="#//StrengthEnum" defaultValueLiteral="MEDIUM"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="survival" eType="ecore:EClass ../datatypes/roqmedatatypes.ecore#//TimeValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionedBy" eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//GeneralExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StrengthEnum">
+    <eLiterals name="VERY_HIGH"/>
+    <eLiterals name="HIGH" value="1"/>
+    <eLiterals name="MEDIUM" value="2"/>
+    <eLiterals name="LOW" value="3"/>
+    <eLiterals name="VERY_LOW" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="../datatypes/roqmedatatypes.ecore#//Sentence">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="../datatypes/roqmedatatypes.ecore#//TypedVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Context" abstract="true" eSuperTypes="../datatypes/roqmedatatypes.ecore#//TypedVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetVariable" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="ecore:EClass ../datatypes/roqmedatatypes.ecore#//TypedVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//GeneralExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Timer" eSuperTypes="../datatypes/roqmedatatypes.ecore#//TypedVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="once" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="ecore:EClass ../expressions/roqmeexpressions.ecore#//GeneralExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="ecore:EClass ../datatypes/roqmedatatypes.ecore#//TimeValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paused" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimerAction" abstract="true" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timer" lowerBound="1" eType="#//Timer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StartTimer" eSuperTypes="#//TimerAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StopTimer" eSuperTypes="#//TimerAction"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="InfluenceEnum">
+    <eLiterals name="REINFORCE"/>
+    <eLiterals name="UNDERMINE" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResumeTimer" eSuperTypes="#//TimerAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClearEvidence" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//BeliefVariable"/>
+  </eClassifiers>
+</ecore:EPackage>

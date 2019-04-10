@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/roqme.metamodel/src" editDirectory="/roqme.metamodel.edit/src"
+    editorDirectory="/roqme.metamodel.editor/src" modelPluginID="roqme.metamodel"
+    modelName="Roqmedatatypes" editPluginClass="roqme.metamodel.datatypes.provider.RoqmedatatypesEditPlugin"
+    editorPluginClass="roqme.metamodel.datatypes.presentation.RoqmedatatypesEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testSuiteClass="roqme.metamodel.datatypes.tests.RoqmedatatypesAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="roqme.metamodel.edit" editorPluginID="roqme.metamodel.editor" operationReflection="true"
+    importOrganizing="true">
+  <foreignModel>roqmedatatypes.ecore</foreignModel>
+  <genPackages prefix="Datatypes" basePackage="roqme.metamodel" disposableProviderFactory="true"
+      fileExtensions="roqme" ecorePackage="roqmedatatypes.ecore#/">
+    <genClasses ecoreClass="roqmedatatypes.ecore#//RoqmeModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//RoqmeModel/namespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//RoqmeModel/dataTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//RoqmeModel/sentences"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//RoqmeModel/variables"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//TypedVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//TypedVariable/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//TypedVariable/declaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//TypedVariable/initializedTo"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//DataTypeDeclaration"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//ReferencedDeclaration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//ReferencedDeclaration/type"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//ContainedDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//ContainedDeclaration/type"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//InbuiltDeclaration"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//DataTypeDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//DataTypeDefinition/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//DataTypeDefinition/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//DataType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//DataType/cardinality"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//EnumType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//EnumType/literals"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//EnumLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//EnumLiteral/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//EnumLiteral/enumType"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//EventType"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//NumericType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//NumericType/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//TimeType"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//BooleanType"/>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//TypedValue"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//BooleanValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//BooleanValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//EnumValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//EnumValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//NumericValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//NumericValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//TimeValue"/>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//EventValue"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//LowerBound">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//LowerBound/value"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//UpperBound">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//UpperBound/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//NumericTypeConstraint"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//UnitMeasuredType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//UnitMeasuredType/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//UnitMeasuredValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//UnitMeasuredValue/unit"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//Sentence"/>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//SingleValue"/>
+    <genClasses ecoreClass="roqmedatatypes.ecore#//ArrayValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmedatatypes.ecore#//ArrayValue/values"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmedatatypes.ecore#//DocumentableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmedatatypes.ecore#//DocumentableElement/description"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

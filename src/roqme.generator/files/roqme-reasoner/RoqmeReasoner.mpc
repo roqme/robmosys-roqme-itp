@@ -1,0 +1,34 @@
+project(*roqmereasoner) {
+  exename   = roqme-reasoner
+  includes += .
+  includes += $(ROQME_ROOT)/cpp/roqmeDDS/include
+  includes += $(ROQME_ROOT)/cpp/roqmeDDS/idl
+  includes += $(OSPL_HOME)/include/sys
+  includes += $(OSPL_HOME)/include
+  includes += $(OSPL_HOME)/include/dcps/C++/SACPP
+  includes += $(OSPL_HOME)/include/dcps/C++/isocpp2
+
+  libpaths += $(OSPL_HOME)/lib
+  libpaths += $(ROQME_ROOT)/roqmeDDS/lib
+
+  lit_libs += dcpssacpp
+  lit_libs += dcpsgapi
+  lit_libs += ddsdatabase
+  lit_libs += ddsos
+  lit_libs += ddskernel
+  lit_libs += dcpsisocpp2
+  lit_libs += roqmedds
+
+  Source_Files {
+    src/ConfigurationParams.cpp
+    src/domain.cpp
+    src/factor.cpp
+    src/FilteringVarElimination.cpp
+    src/InferenceEngineFactory.cpp
+    src/io.cpp
+    src/variable.cpp
+    src/RoqmeReasoner.cpp
+    src/DDSConnRoqmeReasoner.cpp
+    src/main.cpp
+  }
+}

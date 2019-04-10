@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="roqme.ui.commands.GenerateCommand"
+            description="Starts the RoQME code generation"
+            id="roqme.ui.menu.generate"
+            name="generate">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu">
+         <menu
+               label="RoQME">
+            <command
+                  commandId="roqme.ui.menu.generate"
+                  label="Generate Metrics Provider"
+                  style="push">
+            </command>
+            <visibleWhen
+	          			checkEnabled="false">
+	       			<with
+	             		variable="selection">
+	          			
+	          			<iterate
+	                		ifEmpty="false"
+	                		operator="and">
+	             			
+	             			<adapt
+	                   			type="org.eclipse.core.resources.IFile">
+	                   			<test property="org.eclipse.core.resources.extension" value="roqmemap" />
+	             			</adapt>
+	          			</iterate>
+	      			 </with>
+	   		 	</visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.sirius.ui.tools.views.model.explorer#PopupMenu">
+            <menu
+               label="RoQME">
+            <command
+                  commandId="roqme.ui.menu.generate"
+                  label="Generate Metrics Provider"
+                  style="push">
+            </command>
+            <visibleWhen
+	          			checkEnabled="false">
+	       			<with
+	             		variable="selection">
+	          			
+	          			<iterate
+	                		ifEmpty="false"
+	                		operator="and">
+	             			
+	             			<adapt
+	                   			type="org.eclipse.core.resources.IFile">
+	                   			<test property="org.eclipse.core.resources.extension" value="roqmemap" />
+	             			</adapt>
+	          			</iterate>
+	      			 </with>
+	   		 	</visibleWhen>
+         </menu>
+            
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="roqme.ui.wizard"
+            name="RoQME">
+      </category>
+      <wizard
+            category="roqme.ui.wizard"
+            class="roqme.ui.wizards.ProjectWizard"
+            icon="icons/newproject.png"
+            id="roqme.ui.wizard.project"
+            name="RoQME Project"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>

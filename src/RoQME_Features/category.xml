@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/RoQME_Features_1.0.0.qualifier.jar" id="RoQME_Features" version="1.0.0.qualifier" os="linux" nl="en" arch="x86_64">
+      <category name="roqme"/>
+   </feature>
+   <category-def name="roqme" label="RoQME">
+      <description>
+         RoQME provides software engineers with methods and tools to deal with system-level non-functional properties, enabling the specification of global Quality-of-Service (QoS) metrics in robotics.
+      </description>
+   </category-def>
+</site>

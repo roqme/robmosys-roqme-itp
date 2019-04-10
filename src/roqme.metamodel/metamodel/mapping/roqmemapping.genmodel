@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/roqme.metamodel/src" modelPluginID="roqme.metamodel"
+    modelName="Roqmemapping" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="../../../org.ecore.base.basicAttributes/model/basicAttributes.genmodel#//basicAttributes ../../../org.ecore.service.communicationObject/model/communicationObject.genmodel#//communicationObject ../../../org.ecore.service.communicationPattern/model/communicationPattern.genmodel#//communicationPattern ../../../org.ecore.service.componentMode/model/componentMode.genmodel#//componentMode ../../../org.ecore.service.coordinationPattern/model/coordinationPattern.genmodel#//coordinationPattern ../../../org.ecore.service.parameterDefinition/model/parameterDefinition.genmodel#//parameterDefinition ../datatypes/roqmedatatypes.genmodel#//datatypes ../expressions/roqmeexpressions.genmodel#//expressions ../kernel/roqmekernel.genmodel#//kernel ../../../org.ecore.service.serviceDefinition/model/serviceDefinition.genmodel#//serviceDefinition ../../../org.ecore.base.stateMachine/model/stateMachine.genmodel#//stateMachine"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>roqmemapping.ecore</foreignModel>
+  <genPackages prefix="Mapping" basePackage="roqme.metamodel" disposableProviderFactory="true"
+      ecorePackage="roqmemapping.ecore#/">
+    <genClasses ecoreClass="roqmemapping.ecore#//MappingModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmemapping.ecore#//MappingModel/monitors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmemapping.ecore#//MappingModel/imports"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmemapping.ecore#//Monitor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmemapping.ecore#//Monitor/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roqmemapping.ecore#//Monitor/service"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roqmemapping.ecore#//Monitor/opts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//Monitor/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//Monitor/sourceType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roqmemapping.ecore#//ConfigOpt"/>
+    <genClasses ecoreClass="roqmemapping.ecore#//Period">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//Period/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//Period/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmemapping.ecore#//MinTimeBtwUpdates">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//MinTimeBtwUpdates/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//MinTimeBtwUpdates/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmemapping.ecore#//MinDiffBtwUpdates">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//MinDiffBtwUpdates/value"/>
+    </genClasses>
+    <genClasses ecoreClass="roqmemapping.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roqmemapping.ecore#//Import/importURI"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

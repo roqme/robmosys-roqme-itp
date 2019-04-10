@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: roqme.editor.ui
+Bundle-Vendor: University of Extremadura, University of Málaga, Biometric Vox S.L.
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: roqme.editor.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: roqme.editor,
+ roqme.editor.ide,
+ roqme.metamodel,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ org.eclipse.ui,
+ org.eclipse.compare,
+ org.eclipse.xtext.builder,
+ org.eclipse.xtend.lib;resolution:=optional,
+ org.eclipse.xtext.xbase.lib
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.xtext.roqme.ui,
+ org.xtext.roqme.ui.contentassist,
+ org.xtext.roqme.ui.quickfix,
+ roqme.editor.ui.internal
+Bundle-Activator: roqme.editor.ui.internal.EditorActivator

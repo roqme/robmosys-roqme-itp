@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: roqme.ui
+Bundle-SymbolicName: roqme.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: roqme.generator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.ui.ide,
+ org.eclipse.ui,
+ org.eclipse.core.resources,
+ roqme.generator,
+ org.xtext.service.serviceDefinition,
+ org.xtext.service.communicationObject,
+ org.eclipse.xtext,
+ org.ecore.service.serviceDefinition
+Import-Package: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.emf.ecore.util
+Bundle-Vendor: University of Extremadura, University of Málaga, Biometric Vox S.L.

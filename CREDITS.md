@@ -2,18 +2,18 @@ Credits
 =======
 
   - RoQME team
-    * Cristina Vicente Chicote (Universidad de Extremadura, Spain)
-    * Pablo García Ojeda (Universidad de Extremadura, Spain)
-    * Daniel García Pérez (Universidad de Extremadura, Spain)
-    * Jose García Alonso (Universidad de Extremadura, Spain)
+    * Cristina Vicente-Chicote (Universidad de Extremadura, Spain)
+    * Pablo García-Ojeda (Universidad de Extremadura, Spain)
+    * Daniel García-Pérez (Universidad de Extremadura, Spain)
+    * Jose García-Alonso (Universidad de Extremadura, Spain)
     * Javier Berrocal (Universidad de Extremadura, Spain)
     * Juan Hernández (Universidad de Extremadura, Spain)    
     * Jesús Martínez (Universidad de Málaga, Spain)
-    * Juan Adrián Romero Garcés (Universidad de Málaga, Spain)
-    * Rebeca Marfil Robles (Universidad de Málaga, Spain)
-    * Antonio J. Bandera Rubio (Universidad de Málaga, Spain)
-    * Juan P. Bandera Rubio (Universidad de Málaga, Spain)
-    * Juan Francisco Inglés Romero (Biometric Vox SL, Spain)
+    * J. Adrián Romero-Garcés (Universidad de Málaga, Spain)
+    * Rebeca Marfil (Universidad de Málaga, Spain)
+    * Antonio J. Bandera (Universidad de Málaga, Spain)
+    * Juan P. Bandera (Universidad de Málaga, Spain)
+    * Juan Francisco Inglés-Romero (Biometric Vox SL, Spain)
     * Roberto Font (Biometric Vox SL, Spain)
     * Juan Manuel Espín (Biometric Vox SL, Spain)
 

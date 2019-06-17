@@ -7,7 +7,7 @@ Building systems out of components requires taking into account both functional 
 The RoQME Tool Chain, delivered here as a free and open source Eclipse plug-in, provides both modelling and code generation tools, enabling the creation of actual RobMoSys-compliant components, readily usable in RobMoSys-based solutions as QoS information providers. This information could then be used by other components for different purposes, e.g., robot behaviour adaptation or benchmarking.
 
 
-| [![RobMosys](https://robmosys.eu/wp-content/uploads/2017/02/RobMoSys300DPI-e1487258511268.jpg)](https://robmosys.eu/wiki/conformance:start)|RoQME has been supported by the H2020 European Project RobMoSys. This contribution is [RobMoSys conformant](https://robmosys.eu/wiki/conformance:start). |
+| [![RobMosys](https://robmosys.eu/wiki/_media/conformance:conformance-150px.png)](https://robmosys.eu/wiki/conformance:start)|RoQME has been supported by the H2020 European Project RobMoSys. This contribution is [RobMoSys conformant](https://robmosys.eu/wiki/conformance:start). |
 |-------|:------------|
 
 **Further information about the RoQME ITP available at:**
